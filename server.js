@@ -12,11 +12,13 @@ async function translateTextToThai(text) {
     const response = await fetch(url);
     if (!response.ok) return text;
     const data = await response.json();
-    return data && data ? data.map(item => item).join('') : text;
+    return data && data[0] ? data[0].map(item => item[0]).join('') : text;
   } catch (err) {
+    console.error("Translation error:", err);
     return text;
   }
 }
+
 
 function extractYouTubeId(url) {
   const parseRegex = /(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu.be\/)([a-zA-Z0-9_-]{11})/;
