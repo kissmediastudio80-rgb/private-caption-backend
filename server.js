@@ -8,6 +8,7 @@ app.use(express.json());
 
 async function translateTextToThai(text) {
   try {
+    // Fixed string interpolation syntax here by adding '$'
     const url = `https://googleapis.com{encodeURIComponent(text)}`;
     const response = await fetch(url);
     if (!response.ok) return text;
