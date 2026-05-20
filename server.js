@@ -12,7 +12,7 @@ async function translateTextToThai(text) {
     const response = await fetch(url);
     if (!response.ok) return text;
     const data = await response.json();
-    return data && data[0] ? data[0].map(item => item[0]).join('') : text;
+    return data && data ? data.map(item => item).join('') : text;
   } catch (err) {
     console.error("Translation error:", err);
     return text;
