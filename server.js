@@ -56,6 +56,5 @@ app.post('/api/transcribe', async (req, res) => {
   } catch (err) {
     return res.status(500).json({ error: "No captions found on this video." });
   }
-});
-
-app.listen(5000, () => console.log(`🚀 Translation backend running on port 5000`));
+const PORT_APP = process.env.PORT || 5000;
+app.listen(PORT_APP, () => console.log(`🚀 Automated Translation Backend running on port ${PORT_APP}`));
