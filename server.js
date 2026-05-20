@@ -12,20 +12,17 @@ async function translateTextToThai(text) {
     const response = await fetch(url);
     if (!response.ok) return text;
     const data = await response.json();
-    return data && data ? data.map(item => item).join('') : text;
+    return data && data[0] ? data[0].map(item => item[0]).join('') : text;
   } catch (err) {
     console.error("Translation error:", err);
     return text;
   }
 }
 
-
-
 function extractYouTubeId(url) {
   const parseRegex = /(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu.be\/)([a-zA-Z0-9_-]{11})/;
+  const matchResult = url.match(parseRegex);
   return (matchResult && matchResult[1]) ? matchResult[1] : null;
-
-  return (matchResult && matchResult) ? matchResult : null;
 }
 
 app.post('/api/transcribe', async (req, res) => {
@@ -57,5 +54,7 @@ app.post('/api/transcribe', async (req, res) => {
   } catch (err) {
     return res.status(500).json({ error: "No captions found on this video." });
   }
+});
+
 const PORT_APP = process.env.PORT || 5000;
 app.listen(PORT_APP, () => console.log(`🚀 Automated Translation Backend running on port ${PORT_APP}`));
