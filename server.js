@@ -20,6 +20,7 @@ async function translateTextToThai(text) {
 }
 
 
+
 function extractYouTubeId(url) {
   const parseRegex = /(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu.be\/)([a-zA-Z0-9_-]{11})/;
   const matchResult = url.match(parseRegex);
